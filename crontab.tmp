@@ -1,0 +1,2 @@
+7 11 20 9 * ruby /Users/Ben/Documents/scriptx\ -\ gcal\ mp3\ recorder/GCal-MP3-Recorder/record.rb "An Updated Cool Event" 120.05
+17 18 20 9 * ruby /Users/Ben/Documents/scriptx\ -\ gcal\ mp3\ recorder/GCal-MP3-Recorder/record.rb "Google" 65.0
