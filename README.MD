@@ -69,3 +69,17 @@ cd GCal-MP3-Recorder
 5. Open `gcal-mp3.rb` and change `CALENDER_ID` to your Calendar ID
 
 ###Run script for the first time
+
+```
+ruby gcal-mp3.rb
+```
+
+This will open a web browser where you have to log in to a Google account with access to the calendar.
+
+Once complete, it will create a cron job for the script itself and any google events.
+
+```
+crontab -l
+* 8 * * * /home/parallels/GCal-MP3-Recorder/gcal-mp3
+55 9 21 9 * ruby /home/parallels/GCal-MP3-Recorder/record.rb "Test Event" 4200.0
+```

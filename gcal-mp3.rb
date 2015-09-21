@@ -41,7 +41,7 @@ logger.info "Running gcal mp3 script"
 
 #This the name of the recording script
 SCRIPT_FILE = "#{DIR}/record.rb"
-ENTRIES_TO_ADD = ["* #{PULL_HOUR} * * * #{DIR.gsub(/\s/,'\ ')}/gcal-mp3"]
+ENTRIES_TO_ADD = ["* #{PULL_HOUR} * * * #{DIR.gsub(/\s/,'\ ')}/gcal-mp3.rb"]
 
 ##
 # Ensure valid credentials, either by restoring from the saved credentials
