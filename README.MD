@@ -1,5 +1,5 @@
 # GCal-MP3-Recorder
-Creates crontab recordings via streamripper based on Google Calendar events
+Creates crontab recordings via streamripper based on Google Calendar events.
 
 ##Install
 
@@ -41,7 +41,7 @@ Go and make a coffee, this is going to take a while!
 ###Google API Gem
 
 ```
-gem install "google-api-client"
+gem install "Google-api-client"
 ```
 
 ###Streamripper
@@ -63,7 +63,7 @@ cd GCal-MP3-Recorder
 
 ###Find your calendar ID
 
-1. Visit [Google Calendar](https://www.google.com/calendar/) in your web browser.
+1. Visit [Google Calendar](https://www.Google.com/calendar/) in your web browser.
 
 2. In the calendar list on the left, click the down-arrow button next to the appropriate calendar, then select Calendar settings.
 
@@ -73,15 +73,15 @@ cd GCal-MP3-Recorder
 
 5. Open `gcal-mp3.rb` and change `CALENDER_ID` to your Calendar ID
 
-###Run script for the first time
+###Run GCal script for the first time
 
 ```
 ruby gcal-mp3.rb
 ```
 
-This will open a web browser where you have to log in to a Google account with access to the calendar.
+This will open a web browser where you have to log into a Google account with access to the calendar.
 
-Once complete, it will create a cron job for the script itself and any google events.
+Once complete, it will create a cron job for the script itself and any Google events. By default it runs at 8am every day but this can be changed in the GCal script.
 
 ```
 crontab -l
@@ -90,6 +90,6 @@ crontab -l
 ```
 
 ###Record Script
-The google events will trigger this script based on their event start time (a pre and post record buffer is optional). The script uses streamripper to record a RTP stream to a single MP3 file with the name of the event as the file title.
+The Google events will trigger this script based on their event start time (a pre and post record buffer is optional). The script uses streamripper to record a RTP stream to a single MP3 file with the date and name of the event as the file title.
 
 You can change the output folder and stream url from this file.

@@ -18,5 +18,6 @@ d = Time.new
 # This is where we will put the crontab file we generate.
 LOG_FILE = File.join(DIR, 'record.log')
 logger = Logger.new LOG_FILE
-logger.info "recording file #{ARGV[0]} for #{ARGV[1]} seconds"
+logger.info "Recording event #{ARGV[0]} for #{ARGV[1]} seconds"
 system("streamripper #{STREAM_URL} -d #{OUTPUT_DIR} -l #{ARGV[1]} -a \"#{d.year}-#{d.month}-#{d.day}_#{d.hour}-#{d.min}-#{d.sec} - #{ARGV[0]}\" -A")
+logger.info "Finished recording event #{ARGV[0]}"
