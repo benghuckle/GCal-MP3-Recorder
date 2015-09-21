@@ -7,7 +7,7 @@ require 'google/api_client/auth/storage'
 require 'google/api_client/auth/storages/file_store'
 require 'fileutils'
 
-APPLICATION_NAME = 'Google Calendar API Quickstart'
+APPLICATION_NAME = 'GCal MP3 Recorder'
 CLIENT_SECRETS_PATH = 'client_secret.json'
 CREDENTIALS_PATH = File.join(Dir.home, '.credentials',
 														 "calendar-quickstart.json")
@@ -20,6 +20,12 @@ d = Date.today
 PRE_RECORD_TIME = 5
 POST_RECORD_TIME = 5
 
+# Which hour in the day would you like to check for new events? (24 hour)
+PULL_HOUR = 8
+
+# How many days in the future would you like to check for? This is just incase the script fails one day so you this have entries to record
+SEARCH_RANGE = 5
+
 # Where are we?
 DIR = File.expand_path(File.dirname(__FILE__))
 
@@ -29,11 +35,11 @@ TEMP_FILE = File.join(DIR, 'crontab.tmp')
 # Log file info
 LOG_FILE = File.join(DIR, 'gcal-mp3.log')
 logger = Logger.new LOG_FILE
-logger.info "recording file #{ARGV[0]} for #{ARGV[1]} seconds"
+logger.info "Running gcal mp3 script"
 
 #This the name of the recording script
 SCRIPT_FILE = "#{DIR}/record.rb"
-ENTRIES_TO_ADD = []
+ENTRIES_TO_ADD = ["* #{PULL_HOUR} * * * #{DIR.gsub(/\s/,'\ ')}/gcal-mp3"]
 
 ##
 # Ensure valid credentials, either by restoring from the saved credentials
@@ -79,10 +85,11 @@ results = client.execute!(
 		:singleEvents => true,
 		:orderBy => 'startTime',
 		:timeMin =>  Time.new(d.year, d.month, d.day).iso8601,
-		:timeMax =>  Time.new(d.year, d.month, d.day, 23, 59).iso8601})
+		:timeMax =>  Time.new(d.year, d.month, d.day+SEARCH_RANGE, 23, 59).iso8601})
 
 if results.data.items.empty?
 	#No results
+	logger.error "Couldn't find any events"
 else
 	results.data.items.each do |event|
 		#Parse the start and end dates into ruby
@@ -92,19 +99,19 @@ else
 			start_date = event_start_date - PRE_RECORD_TIME*60
 			end_date = event_end_date + POST_RECORD_TIME*60
 			
-			puts duration(start_date, end_date)
+			logger.info "Adding event #{event.summary} starting at #{start_date}"
 			
 			#Generate the crontab entry
 			ENTRIES_TO_ADD << "#{start_date.min} #{start_date.hour} #{start_date.day} #{start_date.month} * ruby #{SCRIPT_FILE.gsub(/\s/,'\ ')} \"#{event.summary}\" #{duration(start_date, end_date)}"
 		end
-
 	end
+	#Write crontab entries to the temp file
+	File.open(TEMP_FILE, 'w') do |f|
+		ENTRIES_TO_ADD.each { |line| f.puts line }
+	end
+
+	# Now tell crontab to load this file.
+	system("crontab #{TEMP_FILE.gsub(/\s/,'\ ')}")
+	logger.info "Finished gcal mp3 script "
 end
 
-#Write crontab entries to the temp file
-File.open(TEMP_FILE, 'w') do |f|
-	ENTRIES_TO_ADD.each { |line| f.puts line }
-end
-
-# Now tell crontab to load this file.
-system("crontab #{TEMP_FILE.gsub(/\s/,'\ ')}")
