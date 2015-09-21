@@ -31,3 +31,12 @@ I, [2015-09-21T09:49:09.944803 #22195]  INFO -- : Running gcal mp3 script
 I, [2015-09-21T09:49:11.451482 #22195]  INFO -- : Adding event google starting at 2015-09-21 10:55:00 +0200
 I, [2015-09-21T09:49:11.454559 #22195]  INFO -- : Adding event fur starting at 2015-09-23 03:55:00 +0200
 I, [2015-09-21T09:49:11.468435 #22195]  INFO -- : Finished gcal mp3 script 
+I, [2015-09-21T14:24:32.954122 #41460]  INFO -- : Running gcal mp3 script
+I, [2015-09-21T14:24:34.757257 #41460]  INFO -- : Adding event google starting at 2015-09-21 10:55:00 +0200
+I, [2015-09-21T14:24:34.759380 #41460]  INFO -- : Adding event fur starting at 2015-09-23 03:55:00 +0200
+I, [2015-09-21T14:24:34.772420 #41460]  INFO -- : Finished gcal mp3 script 
+I, [2015-09-21T14:51:01.022131 #43464]  INFO -- : Running gcal mp3 script
+I, [2015-09-21T14:51:02.341611 #43464]  INFO -- : Adding event google starting at 2015-09-21 10:55:00 +0200
+I, [2015-09-21T14:51:02.346631 #43464]  INFO -- : Adding event Test Recording starting at 2015-09-21 15:39:00 +0200
+I, [2015-09-21T14:51:02.350088 #43464]  INFO -- : Adding event fur starting at 2015-09-23 03:55:00 +0200
+I, [2015-09-21T14:51:02.368359 #43464]  INFO -- : Finished gcal mp3 script 

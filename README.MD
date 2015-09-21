@@ -40,12 +40,17 @@ Go and make a coffee, this is going to take a while!
 
 ###Google API Gem
 
-`gem install "google-api-client"`
+```
+gem install "google-api-client"
+```
 
 ###Streamripper
-`sudo apt-get install streamripper`
 
-###Download script from git
+```
+sudo apt-get install streamripper
+```
+
+###Download GCal MP3 Recorder from Git
 
 ```
 cd
@@ -80,6 +85,11 @@ Once complete, it will create a cron job for the script itself and any google ev
 
 ```
 crontab -l
-* 8 * * * /home/parallels/GCal-MP3-Recorder/gcal-mp3
+* 8 * * * /home/parallels/GCal-MP3-Recorder/gcal-mp3.rb
 55 9 21 9 * ruby /home/parallels/GCal-MP3-Recorder/record.rb "Test Event" 4200.0
 ```
+
+###Record Script
+The google events will trigger this script based on their event start time (a pre and post record buffer is optional). The script uses streamripper to record a RTP stream to a single MP3 file with the name of the event as the file title.
+
+You can change the output folder and stream url from this file.

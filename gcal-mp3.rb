@@ -43,6 +43,9 @@ logger.info "Running gcal mp3 script"
 SCRIPT_FILE = "#{DIR}/record.rb"
 ENTRIES_TO_ADD = ["* #{PULL_HOUR} * * * #{DIR.gsub(/\s/,'\ ')}/gcal-mp3.rb"]
 
+#Load Ruby Environment
+RUBY_ENV = "bash -c 'export PATH=\"$HOME/.rbenv/bin:$PATH\"; eval \"$(rbenv init -)\"; "
+
 ##
 # Ensure valid credentials, either by restoring from the saved credentials
 # files or intitiating an OAuth2 authorization request via InstalledAppFlow.
@@ -104,7 +107,7 @@ else
 			logger.info "Adding event #{event.summary} starting at #{start_date}"
 			
 			#Generate the crontab entry
-			ENTRIES_TO_ADD << "#{start_date.min} #{start_date.hour} #{start_date.day} #{start_date.month} * ruby #{SCRIPT_FILE.gsub(/\s/,'\ ')} \"#{event.summary}\" #{duration(start_date, end_date)}"
+			ENTRIES_TO_ADD << "#{start_date.min} #{start_date.hour} #{start_date.day} #{start_date.month} * #{RUBY_ENV} ruby #{SCRIPT_FILE.gsub(/\s/,'\ ')} \"#{event.summary}\" #{duration(start_date, end_date)}'"
 		end
 	end
 	#Write crontab entries to the temp file

@@ -1,3 +1,4 @@
-* 8 * * * /Users/Ben/Documents/scriptx\ -\ gcal\ mp3\ recorder/GCal-MP3-Recorder/gcal-mp3
-55 10 21 9 * ruby /Users/Ben/Documents/scriptx\ -\ gcal\ mp3\ recorder/GCal-MP3-Recorder/record.rb "google" 4200.0
-55 3 23 9 * ruby /Users/Ben/Documents/scriptx\ -\ gcal\ mp3\ recorder/GCal-MP3-Recorder/record.rb "fur" 600.0
+* 8 * * * /Users/Ben/Documents/scriptx\ -\ gcal\ mp3\ recorder/GCal-MP3-Recorder/gcal-mp3.rb
+55 10 21 9 * bash -c 'export PATH="$HOME/.rbenv/bin:$PATH"; eval "$(rbenv init -)";  ruby /Users/Ben/Documents/scriptx\ -\ gcal\ mp3\ recorder/GCal-MP3-Recorder/record.rb "google" 4200.0'
+39 15 21 9 * bash -c 'export PATH="$HOME/.rbenv/bin:$PATH"; eval "$(rbenv init -)";  ruby /Users/Ben/Documents/scriptx\ -\ gcal\ mp3\ recorder/GCal-MP3-Recorder/record.rb "Test Recording" 600.0'
+55 3 23 9 * bash -c 'export PATH="$HOME/.rbenv/bin:$PATH"; eval "$(rbenv init -)";  ruby /Users/Ben/Documents/scriptx\ -\ gcal\ mp3\ recorder/GCal-MP3-Recorder/record.rb "fur" 600.0'
