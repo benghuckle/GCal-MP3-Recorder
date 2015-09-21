@@ -27,3 +27,7 @@ I, [2015-09-21T09:33:26.042600 #20559]  INFO -- : Adding event google starting a
 I, [2015-09-21T09:33:26.045141 #20559]  INFO -- : Adding event fur starting at 2015-09-23 03:55:00 +0200
 I, [2015-09-21T09:33:26.056508 #20559]  INFO -- : Finished gcal mp3 script 
 I, [2015-09-21T09:33:58.023131 #20683]  INFO -- : Running gcal mp3 script
+I, [2015-09-21T09:49:09.944803 #22195]  INFO -- : Running gcal mp3 script
+I, [2015-09-21T09:49:11.451482 #22195]  INFO -- : Adding event google starting at 2015-09-21 10:55:00 +0200
+I, [2015-09-21T09:49:11.454559 #22195]  INFO -- : Adding event fur starting at 2015-09-23 03:55:00 +0200
+I, [2015-09-21T09:49:11.468435 #22195]  INFO -- : Finished gcal mp3 script 

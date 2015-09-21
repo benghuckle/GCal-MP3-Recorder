@@ -13,6 +13,8 @@ CREDENTIALS_PATH = File.join(Dir.home, '.credentials',
 														 "calendar-quickstart.json")
 SCOPE = 'https://www.googleapis.com/auth/calendar.readonly'
 
+CALENDER_ID = "ghuckle.co.uk_7mrbjjgv3ku3b1q739ee6d8uls@group.calendar.google.com"
+
 # Get Today's Date
 d = Date.today
 
@@ -80,8 +82,8 @@ calendar_api = client.discovered_api('calendar', 'v3')
 results = client.execute!(
 	:api_method => calendar_api.events.list,
 	:parameters => {
-		:calendarId => 'ghuckle.co.uk_7mrbjjgv3ku3b1q739ee6d8uls@group.calendar.google.com',
-		:maxResults => 10,
+		:calendarId => CALENDER_ID,
+		:maxResults => 30,
 		:singleEvents => true,
 		:orderBy => 'startTime',
 		:timeMin =>  Time.new(d.year, d.month, d.day).iso8601,
