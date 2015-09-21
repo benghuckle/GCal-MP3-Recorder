@@ -2,7 +2,6 @@
 #ARGV[0] = Event Title
 #ARGV[1] = Recording duration 
 require 'logger'
-require 'Time'
 
 # Where are we?
 DIR = File.expand_path(File.dirname(__FILE__))
