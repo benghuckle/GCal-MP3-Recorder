@@ -13,14 +13,23 @@ CREDENTIALS_PATH = File.join(Dir.home, '.credentials',
 														 "calendar-quickstart.json")
 SCOPE = 'https://www.googleapis.com/auth/calendar.readonly'
 
-#Get Today's Date
+# Get Today's Date
 d = Date.today
+
+# How many mintues to you want to record pre and post the event time
+PRE_RECORD_TIME = 5
+POST_RECORD_TIME = 5
 
 # Where are we?
 DIR = File.expand_path(File.dirname(__FILE__))
 
 # This is where we will put the crontab file we generate.
 TEMP_FILE = File.join(DIR, 'crontab.tmp')
+
+# Log file info
+LOG_FILE = File.join(DIR, 'gcal-mp3.log')
+logger = Logger.new LOG_FILE
+logger.info "recording file #{ARGV[0]} for #{ARGV[1]} seconds"
 
 #This the name of the recording script
 SCRIPT_FILE = "#{DIR}/record.rb"
@@ -53,7 +62,7 @@ def authorize
 end
 
 def duration(start_time, end_time)
-	return (end_time - start_time)/60
+	return (end_time - start_time) #return the time diffence in seconds
 end
 
 # Initialize the API
@@ -72,14 +81,24 @@ results = client.execute!(
 		:timeMin =>  Time.new(d.year, d.month, d.day).iso8601,
 		:timeMax =>  Time.new(d.year, d.month, d.day, 23, 59).iso8601})
 
+if results.data.items.empty?
+	#No results
+else
+	results.data.items.each do |event|
+		#Parse the start and end dates into ruby
+		if !event.start.date_time.nil? #this is to check it is not an all day event 
+			event_start_date = Time.parse("#{event.start.date_time}")
+			event_end_date = Time.parse("#{event.end.date_time}")
+			start_date = event_start_date - PRE_RECORD_TIME*60
+			end_date = event_end_date + POST_RECORD_TIME*60
+			
+			puts duration(start_date, end_date)
+			
+			#Generate the crontab entry
+			ENTRIES_TO_ADD << "#{start_date.min} #{start_date.hour} #{start_date.day} #{start_date.month} * ruby #{SCRIPT_FILE.gsub(/\s/,'\ ')} \"#{event.summary}\" #{duration(start_date, end_date)}"
+		end
 
-results.data.items.each do |event|
-	#Parse the start and end dates into ruby
-	start_date = Time.parse("#{event.start.date_time}")
-	end_date = Time.parse("#{event.end.date_time}")
-	#Generate the crontab entry
-	ENTRIES_TO_ADD << "#{start_date.min} #{start_date.hour} #{start_date.day} #{start_date.month} * ruby #{SCRIPT_FILE.gsub(/\s/,'\ ')} \"#{event.summary}\" #{duration(start_date, end_date)}"
-
+	end
 end
 
 #Write crontab entries to the temp file

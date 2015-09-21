@@ -6,3 +6,7 @@ D, [2015-09-20T16:30:00.136878 #65507] DEBUG -- : recording
 D, [2015-09-20T17:06:00.185142 #69656] DEBUG -- : recording bbc
 D, [2015-09-20T17:34:55.005971 #72750] DEBUG -- : recording 
 D, [2015-09-20T18:17:01.025755 #79875] DEBUG -- : recording file Google for 65.0 minutes
+D, [2015-09-21T08:43:39.831349 #13768] DEBUG -- : recording file testing record for 1 minutes
+D, [2015-09-21T08:44:28.167762 #13945] DEBUG -- : recording file testing record for 1 minutes
+D, [2015-09-21T08:45:19.464350 #14110] DEBUG -- : recording file testing record for 1 minutes
+D, [2015-09-21T09:10:44.161072 #17558] DEBUG -- : recording file google for 4200.0 minutes
